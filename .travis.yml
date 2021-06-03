@@ -12,13 +12,13 @@ script:
   - docker run -e  "CI=true" react-test npm run test
 
 after_success:
-  - docker build -t tikz/client ./client
-  - docker build -t tikz/nginx ./nginx
-  - docker build -t tikz/server ./server 
-  - docker build -t tikz/worker ./worker
+  - docker build -t tikzsz/client ./client
+  - docker build -t tikzsz/nginx ./nginx
+  - docker build -t tikzsz/server ./server 
+  - docker build -t tikzsz/worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push  tikz/client 
-  - docker push  tikz/nginx 
-  - docker push  tikz/server  
-  - docker push  tikz/worker 
+  - docker push  tikzsz/client 
+  - docker push  tikzsz/nginx 
+  - docker push  tikzsz/server  
+  - docker push  tikzsz/worker 
   
