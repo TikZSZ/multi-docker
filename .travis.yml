@@ -11,7 +11,7 @@ before_install:
   - docker  build -t react-test -f ./client/Dockerfile.dev ./client
 
 scripts:
-  - docker run -e  "CI=true" reactClient npm run test
+  - docker run -e  "CI=true" react-test npm run test
 
 after_success:
   - docker build -t tikz/client ./client
