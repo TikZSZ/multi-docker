@@ -16,7 +16,7 @@ after_success:
   - docker build -t tikz/nginx ./nginx
   - docker build -t tikz/server ./server 
   - docker build -t tikz/worker ./worker
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push  tikz/client 
   - docker push  tikz/nginx 
   - docker push  tikz/server  
