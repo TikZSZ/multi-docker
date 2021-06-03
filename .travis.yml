@@ -1,0 +1,26 @@
+sudo: required
+
+os: linux
+
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker  build -t react-test -f ./client/Dockerfile.dev
+
+scripts:
+  - docker run -e  "CI=true" reactClient npm run test
+
+after_success:
+  - docker build -t tikz/client ./client
+  - docker build -t tikz/nginx ./nginx
+  - docker build -t tikz/server ./server 
+  - docker build -t tikz/worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password
+  - docker push  tikz/client 
+  - docker push  tikz/nginx 
+  - docker push  tikz/server  
+  - docker push  tikz/worker 
+  
